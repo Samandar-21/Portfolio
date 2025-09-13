@@ -210,6 +210,26 @@ export function Sidebar() {
 
   return (
     <>
+      {isMobile && (
+        <Button
+          variant="ghost"
+          size="sm"
+          className={cn(
+            "fixed top-4 right-4 z-50 transition-all duration-300 ease-in-out",
+            "bg-card/90 backdrop-blur-md border hover:bg-accent rounded-xl shadow-lg",
+            "hover:shadow-xl active:scale-95 p-3",
+            "md:hidden", // Hide on desktop since desktop has its own toggle
+          )}
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? (
+            <X className="h-5 w-5 transition-colors duration-200" />
+          ) : (
+            <Menu className="h-5 w-5 transition-colors duration-200" />
+          )}
+        </Button>
+      )}
+
       {/* Sidebar */}
       <div
         className={cn(
@@ -218,28 +238,30 @@ export function Sidebar() {
         )}
       >
         <div className="flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-accent/20 scrollbar-track-transparent hover:scrollbar-thumb-accent/40">
-          <div className="p-2 border-b">
-            <Button
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "w-full transition-all duration-300 ease-in-out",
-                "bg-card/80 backdrop-blur-sm border hover:bg-accent rounded-lg",
-                "hover:shadow-xl active:scale-95",
-                isExpanded ? "justify-start" : "justify-center",
-              )}
-              onClick={() => setIsExpanded(!isExpanded)}
-            >
-              {isExpanded ? (
-                <>
-                  <X className="h-5 w-5 transition-colors duration-200" />
-                  {isExpanded && <span className="ml-2">Close</span>}
-                </>
-              ) : (
-                <Menu className="h-5 w-5 transition-colors duration-200" />
-              )}
-            </Button>
-          </div>
+          {!isMobile && (
+            <div className="p-2 border-b">
+              <Button
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  "w-full transition-all duration-300 ease-in-out",
+                  "bg-card/80 backdrop-blur-sm border hover:bg-accent rounded-lg",
+                  "hover:shadow-xl active:scale-95",
+                  isExpanded ? "justify-start" : "justify-center",
+                )}
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                {isExpanded ? (
+                  <>
+                    <X className="h-5 w-5 transition-colors duration-200" />
+                    {isExpanded && <span className="ml-2">Close</span>}
+                  </>
+                ) : (
+                  <Menu className="h-5 w-5 transition-colors duration-200" />
+                )}
+              </Button>
+            </div>
+          )}
 
           {/* Profile Section - only show when expanded */}
           {isExpanded && (
