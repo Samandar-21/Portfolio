@@ -42,7 +42,7 @@ import "./globals.css"
 import { Sidebar } from "@/components/sidebar"
 
 export const metadata: Metadata = {
-  title: "Hayitboyev Samander - Portfolio",
+  title: "Hayitboyev Samandar - Portfolio",
   description: "Frontend Developer & UI/UX Designer Portfolio",
   generator: "v0.app",
 }
